@@ -1,27 +1,34 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import ru.netology.services.NumberOfMonthsOfRest;
 
+
 public class NumberOfMonthsOfRestTest {
-    @Test
-
-    public void testCaseNumberOne() {
+    @ParameterizedTest
+    //@CsvSource({
+    //"3,10000,3000,20000",
+    //"2,100000,60000,150000"
+    // })
+    @CsvFileSource(files = "src/test/resources/NumberOfMonthsOfRest.csv")
+    public void testCaseNumberOne(int expected, int income, int expenses, int threshold) {
 
 
         NumberOfMonthsOfRest servise = new NumberOfMonthsOfRest();
-        int expected = 3;
-        int actual = servise.calculate(10_000, 3000, 20_000);
+        // int expected = 3;
+        int actual = servise.calculate(income, expenses, threshold);
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-
-    public void testCaseNumberTwo() {
-        NumberOfMonthsOfRest servise = new NumberOfMonthsOfRest();
-        int expected = 2;
-        int actual = servise.calculate(100_000, 60_000, 150_000);
-        Assertions.assertEquals(expected, actual);
-    }
-
+    //    @Test
+    //
+    //    public void testCaseNumberTwo() {
+    //        NumberOfMonthsOfRest servise = new NumberOfMonthsOfRest();
+    //        int expected = 2;
+    //        int actual = servise.calculate(100_000, 60_000, 150_000);
+    //        Assertions.assertEquals(expected, actual);
+    //    }
 
 }
